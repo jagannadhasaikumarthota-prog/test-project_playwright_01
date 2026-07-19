@@ -1,0 +1,21 @@
+{
+  "name": "test-project-playwright-01",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright TypeScript framework with a Google login test and Allure reporting",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "report:generate": "allure generate allure-results --clean -o allure-report",
+    "report:open": "allure open allure-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.0",
+    "@types/node": "^20.14.15",
+    "allure-commandline": "^2.32.0",
+    "allure-playwright": "^3.10.2",
+    "playwright": "^1.46.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
