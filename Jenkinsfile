@@ -8,25 +8,25 @@ pipeline {
   stages {
     stage('Install dependencies') {
       steps {
-        bat 'npm install'
+        bat '"C:\\Program Files\\nodejs\\npm.cmd" install'
       }
     }
 
     stage('Install Playwright browser') {
       steps {
-        bat 'npx playwright install chromium'
+        bat '"C:\\Program Files\\nodejs\\npx.cmd" playwright install chromium'
       }
     }
 
     stage('Run Playwright tests') {
       steps {
-        bat 'npx playwright test --reporter=list,allure-playwright'
+        bat '"C:\\Program Files\\nodejs\\npx.cmd" playwright test --reporter=list,allure-playwright'
       }
     }
 
     stage('Generate Allure report') {
       steps {
-        bat 'npx allure generate allure-results --clean -o allure-report'
+        bat '"C:\\Program Files\\nodejs\\npx.cmd" allure generate allure-results --clean -o allure-report'
       }
     }
   }
