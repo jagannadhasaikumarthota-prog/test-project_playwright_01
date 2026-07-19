@@ -34,14 +34,6 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: 'allure-report/**, test-results/**, playwright-report/**', allowEmptyArchive: true
-      publishHTML(target: [
-        allowMissing: true,
-        alwaysLinkToLastBuild: true,
-        keepAll: true,
-        reportDir: 'allure-report',
-        reportFiles: 'index.html',
-        reportName: 'Allure Report'
-      ])
     }
   }
 }
