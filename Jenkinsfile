@@ -3,30 +3,32 @@ pipeline {
 
   environment {
     CI = 'true'
+    NODE_HOME = 'C:\\Program Files\\nodejs'
+    PATH = "${env.NODE_HOME};${env.PATH}"
   }
 
   stages {
     stage('Install dependencies') {
       steps {
-        bat '"C:\\Program Files\\nodejs\\npm.cmd" install'
+        bat '"%NODE_HOME%\\npm.cmd" install'
       }
     }
 
     stage('Install Playwright browser') {
       steps {
-        bat '"C:\\Program Files\\nodejs\\npx.cmd" playwright install chromium'
+        bat '"%NODE_HOME%\\npx.cmd" playwright install chromium'
       }
     }
 
     stage('Run Playwright tests') {
       steps {
-        bat '"C:\\Program Files\\nodejs\\npx.cmd" playwright test --reporter=list,allure-playwright'
+        bat '"%NODE_HOME%\\npx.cmd" playwright test --reporter=list,allure-playwright'
       }
     }
 
     stage('Generate Allure report') {
       steps {
-        bat '"C:\\Program Files\\nodejs\\npx.cmd" allure generate allure-results --clean -o allure-report'
+        bat '"%NODE_HOME%\\npx.cmd" allure generate allure-results --clean -o allure-report'
       }
     }
   }
