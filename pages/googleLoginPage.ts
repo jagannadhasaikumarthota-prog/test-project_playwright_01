@@ -10,11 +10,11 @@ export class GoogleLoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.emailInput = page.locator('input[type="email"]');
-    this.nextButton = page.locator('button:has-text("Next")');
-    this.passwordInput = page.locator('input[type="password"]');
-    this.signInButton = page.locator('button:has-text("Sign in")');
-    this.errorMessage = page.locator('div[role="alert"]');
+    this.emailInput = page.getByLabel(/email or phone/i).first();
+    this.nextButton = page.getByRole('button', { name: /^next$/i }).first();
+    this.passwordInput = page.getByLabel(/password/i).first();
+    this.signInButton = page.getByRole('button', { name: /sign in/i }).first();
+    this.errorMessage = page.locator('div[role="alert"], [aria-live="assertive"]').first();
   }
 
   async gotoLoginPage() {
@@ -35,7 +35,7 @@ export class GoogleLoginPage {
   }
 
   async waitForPasswordOrError() {
-    await this.page.waitForSelector('input[type="password"], div[role="alert"]', {
+    await this.page.waitForSelector('input[type="password"], div[role="alert"], [aria-live="assertive"]', {
       state: 'visible',
       timeout: 20_000,
     });
