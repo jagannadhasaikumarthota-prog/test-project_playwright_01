@@ -37,7 +37,7 @@ pipeline {
     always {
       archiveArtifacts artifacts: 'allure-report/**, test-results/**, playwright-report/**', allowEmptyArchive: true
       emailext (
-        to: 'jagannadhasaikuma.thota@gmail.com',
+        to: 'jagannadhasaikumarthota@gmail.com',
         subject: "Jenkins Build ${currentBuild.currentResult}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
         body: "Pipeline execution finished.\nJob: ${env.JOB_NAME}\nBuild: #${env.BUILD_NUMBER}\nStatus: ${currentBuild.currentResult}\nArtifacts: ${env.BUILD_URL}artifact/",
         attachLog: true,
